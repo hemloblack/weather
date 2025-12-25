@@ -25,7 +25,7 @@ public class InternetCheckService extends Service {
             @Override
             public void run() {
                 checkInternetConnection();
-                handler.postDelayed(this, 30000); // هر 30 ثانیه چک می‌شود
+                handler.postDelayed(this, 30000);
             }
         };
     }
@@ -45,7 +45,7 @@ public class InternetCheckService extends Service {
 
         Log.d(TAG, "وضعیت اینترنت: " + (isConnected ? "متصل" : "قطع"));
 
-        // ارسال Broadcast
+
         Intent broadcastIntent = new Intent("com.example.weatherapp.INTERNET_STATUS");
         broadcastIntent.putExtra("isConnected", isConnected);
         sendBroadcast(broadcastIntent);

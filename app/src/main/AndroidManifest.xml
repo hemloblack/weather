@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- مجوزها -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -26,13 +27,19 @@
             </intent-filter>
         </activity>
 
-        <!-- سرویس چک اینترنت -->
+
         <service
             android:name=".InternetCheckService"
             android:enabled="true"
             android:exported="false" />
 
-        <!-- BroadcastReceiver -->
+
+        <service
+            android:name=".WeatherNotificationService"
+            android:enabled="true"
+            android:exported="false" />
+
+
         <receiver
             android:name=".MainActivity$NetworkChangeReceiver"
             android:enabled="true"

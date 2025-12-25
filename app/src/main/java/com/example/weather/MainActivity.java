@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -38,22 +39,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // درخواست مجوزها
+
         checkAndRequestPermissions();
 
-        // راه‌اندازی سرویس چک اینترنت
+
         internetCheckService = new InternetCheckService();
         Intent serviceIntent = new Intent(this, InternetCheckService.class);
         startService(serviceIntent);
 
-        // ثبت BroadcastReceiver
+
         networkChangeReceiver = new NetworkChangeReceiver();
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkChangeReceiver, filter);
 
         initializeViews();
 
-        // نمایش Fragment
+
         if (savedInstanceState == null) {
             WeatherFragment weatherFragment = new WeatherFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         citySpinner = findViewById(R.id.citySpinner);
         getWeatherButton = findViewById(R.id.getWeatherButton);
 
-        // تنظیم آداپتور برای Spinner
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
@@ -96,17 +97,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkAndRequestPermissions() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 
-            ActivityCompat.requestPermissions(this,
-                    new String[]{
-                            Manifest.permission.INTERNET,
-                            Manifest.permission.ACCESS_NETWORK_STATE
-                    },
-                    PERMISSION_REQUEST_CODE);
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{
+                                Manifest.permission.INTERNET,
+                                Manifest.permission.ACCESS_NETWORK_STATE,
+                                Manifest.permission.POST_NOTIFICATIONS
+                        },
+                        PERMISSION_REQUEST_CODE);
+            }
+        } else {
+
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{
+                                Manifest.permission.INTERNET,
+                                Manifest.permission.ACCESS_NETWORK_STATE
+                        },
+                        PERMISSION_REQUEST_CODE);
+            }
         }
     }
 
@@ -141,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         stopService(serviceIntent);
     }
 
-    // BroadcastReceiver برای تغییرات شبکه
+
     public class NetworkChangeReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {

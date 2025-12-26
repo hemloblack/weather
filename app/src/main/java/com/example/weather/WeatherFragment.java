@@ -29,7 +29,7 @@ public class WeatherFragment extends Fragment {
     private static final String API_KEY = "55f699b5cc176a2b2c1915c64c477261";
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
-    // کلیدهای ذخیره state
+
     private static final String KEY_CITY = "city_name";
     private static final String KEY_TEMP = "temperature";
     private static final String KEY_HUMIDITY = "humidity";
@@ -37,7 +37,7 @@ public class WeatherFragment extends Fragment {
 
     private RequestQueue requestQueue;
 
-    // متغیرهای ذخیره داده
+
     private String savedCity = "Tehran";
     private String savedTemp = "25°";
     private String savedHumidity = "60%";
@@ -56,20 +56,20 @@ public class WeatherFragment extends Fragment {
 
         requestQueue = Volley.newRequestQueue(getActivity());
 
-        // بازیابی state در صورت چرخش صفحه
+
         if (savedInstanceState != null) {
             savedCity = savedInstanceState.getString(KEY_CITY, "Tehran");
             savedTemp = savedInstanceState.getString(KEY_TEMP, "25°C");
             savedHumidity = savedInstanceState.getString(KEY_HUMIDITY, "رطوبت: 60%");
             savedDesc = savedInstanceState.getString(KEY_DESC, "آسمان صاف");
 
-            // نمایش داده‌های ذخیره شده
+
             cityNameTextView.setText(savedCity);
             temperatureTextView.setText(savedTemp);
             humidityTextView.setText(savedHumidity);
             weatherDescTextView.setText(savedDesc);
         } else {
-            // اولین بار که Fragment ساخته می‌شود
+
             fetchWeatherData("Tehran");
         }
 
@@ -79,7 +79,7 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        // ذخیره state قبل از چرخش صفحه
+
         outState.putString(KEY_CITY, savedCity);
         outState.putString(KEY_TEMP, savedTemp);
         outState.putString(KEY_HUMIDITY, savedHumidity);
@@ -97,26 +97,26 @@ public class WeatherFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            // دریافت نام شهر
+
                             String city = response.getString("name");
 
-                            // دریافت دما
+
                             JSONObject main = response.getJSONObject("main");
                             double temp = main.getDouble("temp");
                             int humidity = main.getInt("humidity");
 
-                            // دریافت توضیحات آب و هوا
+
                             JSONObject weather = response.getJSONArray("weather")
                                     .getJSONObject(0);
                             String description = weather.getString("description");
 
-                            // ذخیره داده‌ها
+
                             savedCity = city;
                             savedTemp = String.format("%.0f°", temp);
                             savedHumidity = humidity + "%";
                             savedDesc = description;
 
-                            // نمایش اطلاعات
+
                             if (cityNameTextView != null) {
                                 cityNameTextView.setText(savedCity);
                                 temperatureTextView.setText(savedTemp);
@@ -124,7 +124,7 @@ public class WeatherFragment extends Fragment {
                                 weatherDescTextView.setText(savedDesc);
                             }
 
-                            // ارسال نوتیفیکیشن
+
                             sendWeatherNotification(savedCity, savedTemp, savedDesc, savedHumidity);
 
                         } catch (JSONException e) {

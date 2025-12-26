@@ -20,13 +20,13 @@ public class BiometricAuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_biometric);
 
-        // چک کردن وجود سنسور
+
         checkBiometricSupport();
 
-        // راه‌اندازی احراز هویت
+
         setupBiometricAuth();
 
-        // شروع احراز هویت
+
         showBiometricPrompt();
     }
 
@@ -35,13 +35,13 @@ public class BiometricAuthActivity extends AppCompatActivity {
 
         switch (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK)) {
             case BiometricManager.BIOMETRIC_SUCCESS:
-                // سنسور موجود است و کار می‌کند
+
                 break;
 
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
                 Toast.makeText(this, "دستگاه شما سنسور اثر انگشت ندارد",
                         Toast.LENGTH_LONG).show();
-                // برو به صفحه اصلی بدون احراز هویت
+
                 goToMainActivity();
                 break;
 
@@ -71,7 +71,7 @@ public class BiometricAuthActivity extends AppCompatActivity {
 
                         if (errorCode == BiometricPrompt.ERROR_USER_CANCELED ||
                                 errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
-                            // کاربر لغو کرد
+
                             Toast.makeText(BiometricAuthActivity.this,
                                     "احراز هویت لغو شد",
                                     Toast.LENGTH_SHORT).show();
@@ -91,7 +91,7 @@ public class BiometricAuthActivity extends AppCompatActivity {
                                 "✅ احراز هویت موفق!",
                                 Toast.LENGTH_SHORT).show();
 
-                        // برو به صفحه اصلی
+
                         goToMainActivity();
                     }
 
@@ -105,7 +105,7 @@ public class BiometricAuthActivity extends AppCompatActivity {
                     }
                 });
 
-        // تنظیمات پنجره احراز هویت
+
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("🔐 ورود به برنامه هواشناسی")
                 .setSubtitle("برای ورود اثر انگشت خود را اسکن کنید")
@@ -121,20 +121,19 @@ public class BiometricAuthActivity extends AppCompatActivity {
     private void goToMainActivity() {
         Intent intent = new Intent(BiometricAuthActivity.this, MainActivity.class);
         startActivity(intent);
-        finish(); // این Activity را ببند
+        finish();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // اگر از برنامه خارج شد و برگشت، دوباره احراز هویت بگیر
-        // (اختیاری - می‌توانید کامنت کنید)
+
     }
 
     @Override
     public void onBackPressed() {
-        // جلوگیری از برگشت به عقب
-        // کاربر باید احراز هویت کند یا برنامه را ببندد
-        finishAffinity(); // تمام Activity ها را ببند
+
+
+        finishAffinity();
     }
 }

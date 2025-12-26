@@ -75,7 +75,7 @@ public class BiometricAuthActivity extends AppCompatActivity {
                             Toast.makeText(BiometricAuthActivity.this,
                                     "احراز هویت لغو شد",
                                     Toast.LENGTH_SHORT).show();
-                            finish(); // برنامه را ببند
+                            finish();
                         } else {
                             Toast.makeText(BiometricAuthActivity.this,
                                     "خطا: " + errString,

@@ -42,13 +42,13 @@
             android:enabled="true"
             android:exported="false" />
 
-        <!-- سرویس نوتیفیکیشن -->
+
         <service
             android:name=".WeatherNotificationService"
             android:enabled="true"
             android:exported="false" />
 
-        <!-- BroadcastReceiver -->
+
         <receiver
             android:name=".MainActivity$NetworkChangeReceiver"
             android:enabled="true"

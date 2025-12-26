@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
+    <!-- مجوزها -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
         android:allowBackup="true"
@@ -18,28 +19,36 @@
         android:theme="@style/Theme.Weather"
         tools:targetApi="31">
 
+        <!-- Activity احراز هویت - صفحه اول -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".BiometricAuthActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Weather">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Activity اصلی -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+        </activity>
 
+        <!-- سرویس چک اینترنت -->
         <service
             android:name=".InternetCheckService"
             android:enabled="true"
             android:exported="false" />
 
-
+        <!-- سرویس نوتیفیکیشن -->
         <service
             android:name=".WeatherNotificationService"
             android:enabled="true"
             android:exported="false" />
 
-
+        <!-- BroadcastReceiver -->
         <receiver
             android:name=".MainActivity$NetworkChangeReceiver"
             android:enabled="true"

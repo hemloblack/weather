@@ -1,84 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/card_background"
-        android:padding="32dp"
-        android:gravity="center">
+        android:gravity="center_horizontal"
+        android:paddingTop="40dp"
+        android:paddingBottom="24dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
+        <!-- نام شهر -->
         <TextView
             android:id="@+id/cityNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="تهران"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="sans-serif-light"/>
-
-        <TextView
-            android:id="@+id/temperatureTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="25°C"
-            android:textSize="72sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textColor="#E0FFFFFF"
+            android:textStyle="normal"
             android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-thin"/>
+            android:fontFamily="sans-serif-light"
+            android:letterSpacing="0.1"/>
 
+        <!-- وضعیت هوا -->
         <TextView
             android:id="@+id/weatherDescTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="آسمان صاف"
-            android:textSize="20sp"
-            android:textColor="#E0FFFFFF"
-            android:layout_marginBottom="24dp"
+            android:textSize="16sp"
+            android:textColor="#B0FFFFFF"
+            android:layout_marginBottom="48dp"
             android:fontFamily="sans-serif"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#40FFFFFF"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"/>
+        <!-- دایره بزرگ دما -->
+        <RelativeLayout
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_marginBottom="32dp">
 
+            <!-- دایره پس‌زمینه -->
+            <View
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:background="@drawable/temperature_circle"/>
+
+            <!-- دمای اصلی -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/temperatureTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25°"
+                    android:textSize="88sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="normal"
+                    android:fontFamily="sans-serif-thin"
+                    android:includeFontPadding="false"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="H:29° L:18°"
+                    android:textSize="16sp"
+                    android:textColor="#B0FFFFFF"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-light"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- پیام انگیزشی -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="امروز روز خوبی است! ☀️"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="sans-serif-light"/>
+
+        <!-- کارت اطلاعات تکمیلی -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:background="@drawable/info_card_background"
+            android:padding="24dp"
+            android:gravity="center"
+            android:elevation="4dp">
 
+            <!-- رطوبت -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center"
-                android:padding="16dp">
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="💧"
+                    android:textSize="32sp"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="رطوبت"
+                    android:textSize="14sp"
+                    android:textColor="#B0FFFFFF"
+                    android:fontFamily="sans-serif"/>
 
                 <TextView
                     android:id="@+id/humidityTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="رطوبت: 60%"
-                    android:textSize="18sp"
+                    android:text="60%"
+                    android:textSize="22sp"
                     android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="sans-serif-medium"/>
+            </LinearLayout>
+
+            <!-- خط جداکننده -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="60dp"
+                android:background="#30FFFFFF"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
+
+            <!-- احساس دما -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🌡️"
+                    android:textSize="32sp"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="احساس دما"
+                    android:textSize="14sp"
+                    android:textColor="#B0FFFFFF"
                     android:fontFamily="sans-serif"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="27°"
+                    android:textSize="22sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="sans-serif-medium"/>
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

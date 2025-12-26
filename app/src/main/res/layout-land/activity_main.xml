@@ -1,71 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@drawable/gradient_background"
-    android:padding="20dp">
+    android:background="@drawable/gradient_background">
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <!-- Fragment Container -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_toEndOf="@id/side_controls"
+        android:layout_marginStart="12dp"/>
+
+    <!-- کنترل‌های کناری -->
+    <LinearLayout
+        android:id="@+id/side_controls"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_alignParentStart="true"
+        android:padding="16dp"
         android:gravity="center"
-        android:paddingEnd="12dp">
+        android:background="@drawable/bottom_panel_background">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="☀️ هواشناسی ایران"
-            android:textSize="26sp"
-            android:textStyle="bold"
+            android:text="📍 انتخاب شهر"
+            android:textSize="18sp"
             android:textColor="#FFFFFF"
             android:gravity="center"
-            android:layout_marginBottom="24dp"
-            android:letterSpacing="0.05"
-            android:shadowColor="#40000000"
-            android:shadowDx="0"
-            android:shadowDy="4"
-            android:shadowRadius="8"
+            android:layout_marginBottom="16dp"
             android:fontFamily="sans-serif-medium"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
             android:background="@drawable/selector_background"
-            android:padding="16dp"
-            android:elevation="4dp">
+            android:padding="12dp">
 
             <Spinner
                 android:id="@+id/citySpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="14dp"
-                android:textColor="#FFFFFF"
+                android:padding="12dp"
                 android:layout_marginBottom="12dp"/>
 
             <Button
                 android:id="@+id/getWeatherButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🔍 دریافت اطلاعات"
+                android:layout_height="48dp"
+                android:text="بروزرسانی"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:background="@drawable/button_background"
-                android:padding="14dp"
-                android:elevation="6dp"/>
+                android:elevation="4dp"/>
         </LinearLayout>
+
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:layout_marginStart="12dp"/>
-
-</LinearLayout>
+</RelativeLayout>

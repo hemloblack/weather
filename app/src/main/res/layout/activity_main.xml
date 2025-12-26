@@ -1,55 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/gradient_background"
-    android:padding="16dp">
+    android:background="@drawable/gradient_background">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="هواشناسی ایران"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:gravity="center"
-        android:layout_marginBottom="24dp"
-        android:fontFamily="sans-serif-medium"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@drawable/selector_background"
-        android:padding="8dp"
-        android:layout_marginBottom="16dp">
-
-        <Spinner
-            android:id="@+id/citySpinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="12dp"
-            android:textColor="#FFFFFF"/>
-
-        <Button
-            android:id="@+id/getWeatherButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="دریافت"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/button_background"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:layout_marginStart="8dp"/>
-    </LinearLayout>
-
+    <!-- Fragment Container -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_controls"/>
 
-</LinearLayout>
+    <!-- کنترل‌های پایین -->
+    <LinearLayout
+        android:id="@+id/bottom_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp"
+        android:background="@drawable/bottom_panel_background">
+
+        <!-- انتخاب شهر -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/selector_background"
+            android:padding="4dp"
+            android:gravity="center_vertical"
+            android:elevation="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍"
+                android:textSize="24sp"
+                android:paddingLeft="12dp"
+                android:paddingRight="8dp"/>
+
+            <Spinner
+                android:id="@+id/citySpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="14dp"
+                android:background="@android:color/transparent"/>
+
+            <Button
+                android:id="@+id/getWeatherButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="بروزرسانی"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="@drawable/button_background"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:layout_marginStart="8dp"
+                android:elevation="4dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

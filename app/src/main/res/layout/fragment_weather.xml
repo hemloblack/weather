@@ -14,7 +14,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <!-- نام شهر -->
+
         <TextView
             android:id="@+id/cityNameTextView"
             android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
             android:fontFamily="sans-serif-light"
             android:letterSpacing="0.1"/>
 
-        <!-- وضعیت هوا -->
+
         <TextView
             android:id="@+id/weatherDescTextView"
             android:layout_width="wrap_content"
@@ -38,19 +38,19 @@
             android:layout_marginBottom="48dp"
             android:fontFamily="sans-serif"/>
 
-        <!-- دایره بزرگ دما -->
+
         <RelativeLayout
             android:layout_width="280dp"
             android:layout_height="280dp"
             android:layout_marginBottom="32dp">
 
-            <!-- دایره پس‌زمینه -->
+
             <View
                 android:layout_width="280dp"
                 android:layout_height="280dp"
                 android:background="@drawable/temperature_circle"/>
 
-            <!-- دمای اصلی -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -79,17 +79,17 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <!-- پیام انگیزشی -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="امروز روز خوبی است! ☀️"
+            android:text="today so good  ☀️"
             android:textSize="16sp"
             android:textColor="#FFFFFF"
             android:layout_marginBottom="40dp"
             android:fontFamily="sans-serif-light"/>
 
-        <!-- کارت اطلاعات تکمیلی -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
             android:gravity="center"
             android:elevation="4dp">
 
-            <!-- رطوبت -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                     android:fontFamily="sans-serif-medium"/>
             </LinearLayout>
 
-            <!-- خط جداکننده -->
+
             <View
                 android:layout_width="1dp"
                 android:layout_height="60dp"
@@ -142,7 +142,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"/>
 
-            <!-- احساس دما -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
